@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
-    'MitosApp.apps.MitosappConfig'
+    'MitosApp'
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True
@@ -81,8 +81,12 @@ WSGI_APPLICATION = 'Backend.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'djongo',
+        'CLIENT': {
+            "host":"mongodb+srv://user_tavo:asf5742k@clustermongo.g5662ux.mongodb.net/?retryWrites=true&w=majority"
+            ,"name":"MitosCluster",
+            "authMechanism":"SCRAM-SHA-1"
+        }
     }
 }
 
