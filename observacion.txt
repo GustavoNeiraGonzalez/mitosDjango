@@ -1,0 +1,1 @@
+djongo al parecer esta desactualizado, por lo que tuve que instalar pymongo en la version 3.12.1
