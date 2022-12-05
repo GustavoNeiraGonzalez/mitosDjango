@@ -1,12 +1,13 @@
 from django.urls import re_path
 from MitosApp import views
+from rest_framework import routers
+from .api import mitosViewSet
 
 from django.conf.urls.static import static
 from django.conf import settings
 
-urlpatterns=[
-    re_path(r'^mitos$',views.mitosApi),
-    re_path(r'^mitos/([0-9]+)$',views.mitosApi),
+router = routers.DefaultRouter()
 
-    re_path(r'^mitos/savefile',views.SaveFile)
-]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+router.register('api/mitos', mitosViewSet, 'mitos')
+
+urlpatterns = router.urls +static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

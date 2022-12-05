@@ -1,25 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
-function App() {
+
+export default function App() {
+
+  const [data, setData] = useState([])
+  useEffect(() =>{
+    axios.get('http://127.0.0.1:8000/api/mitos/')
+    .then(allData =>setData(allData.data))
+  },[])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Container>
+      <Row>
+        {
+          data.map(total =>{
+            
+            return (
+              <Card style={{ width: '18rem' }} key={total.mitoId}>                
+                {console.log(total.Foto)}
+                <Card.Img variant="top" src={total.Foto} />
+                <Card.Body>
+                  <Card.Title>{total.Mito}</Card.Title>
+                  <Card.Text>
+                    {total.historia}
+                  </Card.Text>
+                  <Button variant="primary">Go :D</Button>
+                </Card.Body>
+            </Card>
+              )
+          })  
+        }
+      </Row>
+    </Container>
+    
+      
+  )
 }
-
-export default App;

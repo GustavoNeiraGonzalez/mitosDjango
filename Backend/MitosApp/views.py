@@ -7,6 +7,8 @@ from MitosApp.models import mitos
 from MitosApp.serializers import mitosSerializer
 # Create your views here.
 
+
+
 from django.core.files.storage import default_storage
 
 @csrf_exempt
@@ -37,6 +39,9 @@ def mitosApi(request,id=0):
 
 @csrf_exempt
 def SaveFile(request):
+
     file=request.FILES['file']
     file_name=default_storage.save(file.name,file)
+   
     return JsonResponse(file_name,safe=False)
+

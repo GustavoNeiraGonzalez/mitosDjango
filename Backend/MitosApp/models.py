@@ -8,6 +8,6 @@ class mitos(models.Model):
     Dioses = models.CharField(max_length=100)
     Facciones = models.CharField(max_length=50)
     historia = models.CharField(max_length=1000)
-    Foto = models.CharField(max_length=500)
+    Foto = models.ImageField(upload_to="ImagenMito", null=True)
 
     

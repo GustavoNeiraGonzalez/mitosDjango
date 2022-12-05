@@ -1,7 +1,7 @@
 from rest_framework import serializers
-from MitosApp.models import mitos
+from .models import mitos
 
 class mitosSerializer(serializers.ModelSerializer):
     class Meta:
-        model=mitos
+        model = mitos
         fields=('mitoId','Mito','Titulo','Dioses','Facciones','historia','Foto')
