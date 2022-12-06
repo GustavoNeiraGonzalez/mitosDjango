@@ -4,8 +4,6 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-
 
 export default function App() {
 
@@ -16,13 +14,13 @@ export default function App() {
   },[])
 
   return (
-    <Container>
-      <Row>
+    <Container >
+      <Row >
         {
           data.map(total =>{
             
             return (
-              <Card style={{ width: '18rem' }} key={total.mitoId}>                
+              <Card style={{ width: '18rem',margin: '10px' }} key={total.mitoId}>                
                 {console.log(total.Foto)}
                 <Card.Img variant="top" src={total.Foto} />
                 <Card.Body>
@@ -32,7 +30,7 @@ export default function App() {
                   </Card.Text>
                   <Button variant="primary">Go :D</Button>
                 </Card.Body>
-            </Card>
+              </Card>
               )
           })  
         }
