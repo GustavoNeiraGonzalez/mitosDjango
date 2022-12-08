@@ -1,17 +1,35 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import style from '../minHeight.module.css'
+import axios from 'axios'
+import { useParams } from 'react-router-dom';
+import ola from '../../utils/placeholder.jpg'
+
 export default function Compra() {
+
+    const {mitoId} = useParams();
+    const [data, setData] = useState([])
+
+    useEffect(() => {
+      axios.get("http://127.0.0.1:8000/api/mitos/"+mitoId+"/")
+      .then(allData =>setData(allData.data))
+    }, [])
+
+    
   return (
     <div className={style.minH}>
-        <Card style={{ width: '18rem' }}>
-        <Card.Img variant="top" src="holder.js/100px180" />
+        {console.log(data)}
+        
+        <Card style={{ width: '18rem', backgroundColor:"antiquewhite", color:"black"}}>
+        <Card.Img variant="top" src={ data.Foto ? data.Foto : ola} />
         <Card.Body>
-            <Card.Title>Card Title</Card.Title>
+            <Card.Title>{data.Titulo}</Card.Title>
             <Card.Text>
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
+            {data.mitoId}
+            </Card.Text>
+            <Card.Text>
+            {data.Historia}
             </Card.Text>
             <Button variant="primary">Go somewhere</Button>
         </Card.Body>

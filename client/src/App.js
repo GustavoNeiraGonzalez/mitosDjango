@@ -5,6 +5,7 @@ import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import style from './pages/minHeight.module.css'
+import ola from './utils/placeholder.jpg'
 
 
 export default function App() {
@@ -22,8 +23,8 @@ export default function App() {
           data.map(total =>{
             
             return (
-              <Card style={{ width: '18rem',margin: '10px', backgroundColor:'antiquewhite' }} key={total.mitoId}>                
-                <Card.Img variant="top" src={total.Foto} />
+              <Card style={{ width: '18rem',margin: '10px', backgroundColor:'antiquewhite', color:"black"}} key={total.mitoId}>                
+                <Card.Img variant="top" src={total.Foto ? total.Foto : ola} className={style.radius}/>
                 <Card.Body>
                   <Card.Title>{total.Mito}</Card.Title>
                   <Card.Text>
