@@ -1,0 +1,9 @@
+.minH{
+    min-height: 90vh;
+    min-width: 100vw;
+    background-color: #1C202F;
+    color: linen;
+}
+.colorBack{
+    background-color: #1C202F;
+}

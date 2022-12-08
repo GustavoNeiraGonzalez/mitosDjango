@@ -4,6 +4,8 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
+import style from './pages/minHeight.module.css'
+
 
 export default function App() {
 
@@ -14,14 +16,13 @@ export default function App() {
   },[])
 
   return (
-    <Container >
+    <Container className={style.minH}>
       <Row >
         {
           data.map(total =>{
             
             return (
-              <Card style={{ width: '18rem',margin: '10px' }} key={total.mitoId}>                
-                {console.log(total.Foto)}
+              <Card style={{ width: '18rem',margin: '10px', backgroundColor:'antiquewhite' }} key={total.mitoId}>                
                 <Card.Img variant="top" src={total.Foto} />
                 <Card.Body>
                   <Card.Title>{total.Mito}</Card.Title>
