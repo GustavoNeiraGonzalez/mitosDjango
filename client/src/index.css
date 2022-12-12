@@ -1,3 +1,12 @@
 .margen{
   margin: 10px;
 }
+html, body, #root {
+  min-height: 100vh;
+  margin: 0px;
+  background-color: #1C202F;
+}
+.maxheig{
+  max-height: 262px;
+  min-height: 262px;
+}

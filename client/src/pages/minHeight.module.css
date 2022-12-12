@@ -1,7 +1,4 @@
 .minH{
-    min-height: 90vh;
-    min-width: 100vw;
-    background-color: #1C202F;
     color: linen;
 }
 .colorBack{
@@ -10,3 +7,7 @@
 .radius{
     border-radius: 15%;
 }
+.maxheig{
+    max-height: 262px;
+    min-height: 262px;
+  }

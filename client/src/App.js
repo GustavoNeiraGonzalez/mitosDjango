@@ -6,6 +6,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import style from './pages/minHeight.module.css'
 import ola from './utils/placeholder.jpg'
+import { Link } from 'react-router-dom';
 
 
 export default function App() {
@@ -24,13 +25,16 @@ export default function App() {
             
             return (
               <Card style={{ width: '18rem',margin: '10px', backgroundColor:'antiquewhite', color:"black"}} key={total.mitoId}>                
-                <Card.Img variant="top" src={total.Foto ? total.Foto : ola} className={style.radius}/>
+                <Card.Img variant="top" src={total.Foto ? total.Foto : ola} className={style.radius+' '+style.maxheig}/>
                 <Card.Body>
                   <Card.Title>{total.Mito}</Card.Title>
                   <Card.Text>
                     {total.historia}
                   </Card.Text>
-                  <Button variant="primary">Go :D</Button>
+                  <Card.Text>
+                    ${total.precio}
+                  </Card.Text>
+                  <Link to={'/Compra/'+total.mitoId}><Button variant="primary">Ir a comprar</Button></Link>
                 </Card.Body>
               </Card>
               )

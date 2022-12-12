@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './header/Header'
 import Registrar from './pages/Registrar/Registrar'
 import Compra from './pages/Compra/Compra'
+import style from './index.css'
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
