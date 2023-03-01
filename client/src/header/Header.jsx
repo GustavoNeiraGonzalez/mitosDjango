@@ -1,23 +1,14 @@
 import React from 'react'
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
+import style from './header.module.css'
 import { Link } from "react-router-dom";
 
-
-export default function Header() {
-
-
+export default function prueba() {
   return (
-        <Navbar bg="dark" variant="dark">
-            <Container>
-            <Navbar.Brand href="#home">Navbar</Navbar.Brand>
-            <Nav className="me-auto">
-                <Navbar.Text><Link to="/">Home</Link></Navbar.Text>
-                <Navbar.Text><Link to="/InicioSesion">Features</Link></Navbar.Text>
-                <Navbar.Text><Link to="/">Pricing</Link></Navbar.Text>
-            </Nav>
-            </Container>
-        </Navbar>
+    <div className={style.navbar}>
+      <Link to='/' className={style.navbarlink}>Home</Link>
+      <Link to='/InicioSesion' className={style.navbarlink}>Inicio sesion</Link>
+      <Link to='/' className={style.navbarlink}>Home2</Link>
+      <Link to='/prueba' className={style.navbarlink}>Prueba</Link>
+    </div>
   )
 }

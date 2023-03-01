@@ -29,7 +29,7 @@ export default function Compra() {
             {data.mitoId}
             </Card.Text>
             <Card.Text>
-            {data.Historia}
+            {data.historia}
             </Card.Text>
             <Button variant="primary">Go somewhere</Button>
         </Card.Body>

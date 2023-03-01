@@ -1,0 +1,17 @@
+
+.navbar {
+    display: flex;
+    padding: 0 20px;
+    background-color: #202426;
+    color: wheat;
+    font-weight: bold;
+    position: relative;
+  }
+  
+  .navbarlink {
+    padding: 10px;
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: wheat;
+    text-transform: uppercase;
+  }
