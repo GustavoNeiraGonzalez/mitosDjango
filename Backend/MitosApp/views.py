@@ -23,7 +23,7 @@ def mitosApi(request,id=0):
         if mito_serializer.is_valid():
             mito_serializer.save()
             return JsonResponse("Agregado con exito :D",safe=False)
-        return JsonResponse("Error, no se ha agregado :(",safe=False)
+        return JsonResponse("error",mito_serializer.error_messages,safe=False)
     elif request.method == 'PUT':
         mito_data = JSONParser().parse(request)
         mito = mitos.objects.get(mitoId=mito_data['mitoId'])
@@ -31,7 +31,7 @@ def mitosApi(request,id=0):
         if mito_serializer.is_valid():
             mito_serializer.save()
             return JsonResponse("Modificado con exito :D",safe=False)
-        return JsonResponse("No se ha logrado modificar :(",safe=False)
+        return JsonResponse("error",mito_serializer.error_messages,safe=False)
     elif request.method=='DELETE':
         mito = mitos.objects.get(mitoId=id)
         mito.delete()
