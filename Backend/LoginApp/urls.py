@@ -1,8 +1,8 @@
 from rest_framework import routers
-from .api import loginViewSet
+from .api import loginAPI
 
 router = routers.DefaultRouter()
 
-router.register('api/login',loginViewSet, 'login')
+router.register('api/login',loginAPI,'login')
 
-urlpatterns = router.urls
+urlpatterns = router.urls 

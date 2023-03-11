@@ -19,11 +19,12 @@ from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
+from LoginApp.api import loginAPI
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('MitosApp.urls')),
-    path('',include('LoginApp.urls')),
+    path('api/login/create/',loginAPI.as_view(),name="api_create_user    "),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]

@@ -47,10 +47,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework_simplejwt',
+    'rest_framework.authtoken',
     'corsheaders',
     'MitosApp',
     'LoginApp',
-
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True
@@ -148,7 +148,6 @@ DATABASES = {
     }
 }
 
-AUTH_USER_MODEL = 'LoginApp.user'
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
