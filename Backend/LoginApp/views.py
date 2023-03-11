@@ -9,10 +9,7 @@ from LoginApp.models import user
 from LoginApp.serializers import loginSerializer
 # Create your views here.
 
-class loginViewSet(viewsets.ModelViewSet):
-    permission_classes = (IsAuthenticated,)
-    serializer_class = loginSerializer
-    queryset = user.objects.all()
+
 @csrf_exempt
 def loginapi(request,id=0):
     if request.method=='GET':
