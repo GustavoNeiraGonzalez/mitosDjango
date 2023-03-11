@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.http.response import JsonResponse
 from rest_framework.exceptions import ValidationError
 
+
 class loginSerializer(serializers.ModelSerializer):
     id = serializers.ReadOnlyField()
     username = serializers.CharField()     
@@ -27,3 +28,4 @@ class loginSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('id','username', 'password', 'email')
+

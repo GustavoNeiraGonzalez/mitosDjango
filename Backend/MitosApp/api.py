@@ -1,9 +1,10 @@
 from .models import mitos
 from rest_framework import viewsets, permissions
 from .serializers import mitosSerializer
+from rest_framework.permissions import IsAuthenticated
 
 class mitosViewSet(viewsets.ModelViewSet):
     queryset = mitos.objects.all() #Conjunto de datos
-    permission_classes = [permissions.AllowAny] #allowany = ->
+    permission_classes = [IsAuthenticated] #allowany = ->
     # cualquier cliente puede solicitar datos
     serializer_class = mitosSerializer
