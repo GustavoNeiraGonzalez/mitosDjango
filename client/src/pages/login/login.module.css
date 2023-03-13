@@ -1,0 +1,32 @@
+
+body {
+    font-family: sans-serif;
+    background-color: gray;
+    line-height: 1.4;
+  }
+   
+  .loginContainer {
+    background-color: rgb(43, 42, 42);
+    width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 3px;
+    color:antiquewhite;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+   
+  .formGroup {
+    margin-bottom: 15px;
+  }
+   
+  .formGroup label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+  }
+   
+  .formGroup input {
+    padding: 10px;
+    width: 100%;
+    border: 1
+}
