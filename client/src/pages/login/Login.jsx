@@ -13,8 +13,9 @@ export default function Login() {
           password:password
       })
       .then((response)=>(
-        console.log(response.data.access)
-      ))
+        localStorage.setItem('token', 'Bearer '+response.data.access),
+        console.log(localStorage.getItem('token'))
+        ))
       .catch(err =>{
         console.log(err.message)
       })
