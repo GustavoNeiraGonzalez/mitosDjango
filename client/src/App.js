@@ -17,8 +17,13 @@ export default function App() {
   useEffect(() =>{
     axios.get('http://127.0.0.1:8000/api/mitos/',{headers:tokenHeader})
     .then(allData =>setData(allData.data))
-    .catch(error => console.log(error.response.data))
-  },[])
+    .catch(error => {
+      console.log(error)
+      console.log(error.response.data)
+      if(error.response.data.detail=="Given token not valid for any token type"){
+        localStorage.removeItem('token');
+      }  })
+  },[tokenHeader])
 
   return (
     <Container className={style.minH}>
