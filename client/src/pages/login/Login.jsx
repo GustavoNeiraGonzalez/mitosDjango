@@ -8,17 +8,20 @@ export default function Login() {
   const HandleClick = (e) => {
       e.preventDefault()
     //useEffect para logear y guardar el token en el localstorage
+    if(username === '' || password===''){
+      console.log("No dejar en blanco password username")
+    }else{
+
       axios.post("http://127.0.0.1:8000/api/token/",{
           username:username,
           password:password
       })
       .then((response)=>(
-        localStorage.setItem('token', 'Bearer '+response.data.access),
-        console.log(localStorage.getItem('token'))
+        localStorage.setItem('token', 'Bearer '+response.data.access)
         ))
-      .catch(err =>{
-        console.log(err.message)
-      })
+      .catch(err => console.log(err.response.data))
+
+    }
   }
   
     

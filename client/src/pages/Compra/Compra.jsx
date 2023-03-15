@@ -10,10 +10,16 @@ export default function Compra() {
 
     const {mitoId} = useParams();
     const [data, setData] = useState([])
-
+    const token = localStorage.getItem("token");
+    const tokenHeader = { Authorization: token };
+    console.log(tokenHeader)
     useEffect(() => {
-      axios.get("http://127.0.0.1:8000/api/mitos/"+mitoId+"/")
+      axios.get("http://127.0.0.1:8000/api/mitos/"+mitoId+"/"
+      ,{headers:tokenHeader})
       .then(allData =>setData(allData.data))
+      .catch(err =>{
+        console.log(err.response.data)
+      })
     }, [])
 
     

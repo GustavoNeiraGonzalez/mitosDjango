@@ -10,11 +10,14 @@ import { Link } from 'react-router-dom';
 
 
 export default function App() {
-
+  const token = localStorage.getItem("token");
+  const tokenHeader = { Authorization: token };
   const [data, setData] = useState([])
+  console.log(token)
   useEffect(() =>{
-    axios.get('http://127.0.0.1:8000/api/mitos/')
+    axios.get('http://127.0.0.1:8000/api/mitos/',{headers:tokenHeader})
     .then(allData =>setData(allData.data))
+    .catch(error => console.log(error.response.data))
   },[])
 
   return (
