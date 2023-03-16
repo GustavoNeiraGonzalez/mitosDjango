@@ -19,7 +19,7 @@ export default function Compra() {
       .catch(err =>{
         console.log(err.response.data)
       })
-    }, [tokenHeader])
+    }, [])
 
     
   return (

@@ -7,7 +7,7 @@ export default function prueba() {
     <div className={style.navbar}>
       <Link to='/' className={style.navbarlink}>Home</Link>
       <Link to='/Login' className={style.navbarlink}>Inicio sesion</Link>
-      <Link to='/' className={style.navbarlink}>Home2</Link>
+      <Link to='/IngresarMitos' className={style.navbarlink}>Home2</Link>
       <Link to='/prueba' className={style.navbarlink}>Prueba</Link>
     </div>
   )

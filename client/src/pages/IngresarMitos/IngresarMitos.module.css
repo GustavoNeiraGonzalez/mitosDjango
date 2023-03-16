@@ -1,0 +1,36 @@
+
+.form {
+width: 300px;
+background-color: #2A2A2A;
+padding: 20px;
+display: flex;
+flex-direction: column;
+border-radius: 5px;
+}
+
+.formgroup {
+margin-bottom: 15px;
+}
+
+.formgrouplabel {
+color: #FFFFFF;
+font-weight: bold;
+font-size: 16px;
+}
+
+.formgroupinput {
+background-color: #FFFFFF;
+padding: 10px;
+border: 1px solid #AFAFAF;
+border-radius: 5px;
+color: #2A2A2A;
+}
+
+.button {
+background-color: #AFAFAF;
+color: #2A2A2A;
+font-weight: bold;
+padding: 10px;
+border-radius: 5px;
+border: none;
+}

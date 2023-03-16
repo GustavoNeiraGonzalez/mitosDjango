@@ -13,7 +13,7 @@ export default function App() {
   const token = localStorage.getItem("token");
   const tokenHeader = { Authorization: token };
   const [data, setData] = useState([])
-  console.log(token)
+  console.log(tokenHeader)
   useEffect(() =>{
     axios.get('http://127.0.0.1:8000/api/mitos/',{headers:tokenHeader})
     .then(allData =>setData(allData.data))
@@ -21,9 +21,8 @@ export default function App() {
       console.log(error)
       console.log(error.response.data)
       if(error.response.data.detail==="Given token not valid for any token type"){
-        localStorage.removeItem('token');
       }  })
-  },[tokenHeader])
+  },[])
 
   return (
     <Container className={style.minH}>
