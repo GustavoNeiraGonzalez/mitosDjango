@@ -20,7 +20,7 @@ export default function App() {
     .catch(error => {
       console.log(error)
       console.log(error.response.data)
-      if(error.response.data.detail=="Given token not valid for any token type"){
+      if(error.response.data.detail==="Given token not valid for any token type"){
         localStorage.removeItem('token');
       }  })
   },[tokenHeader])

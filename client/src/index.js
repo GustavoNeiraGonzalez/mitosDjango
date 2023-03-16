@@ -15,7 +15,6 @@ root.render(
     <Header></Header>
     <Routes>
         <Route path="/" element={<App/>} />
-        <Route path="/InicioSesion" element={<Registrar/>}/>
         <Route exact path="/Compra/:mitoId" element={<Compra/>}></Route>
         <Route path="/login" element={<Login/>}/>
         <Route path="/Prueba" element={<Prueba/>}/>

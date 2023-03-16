@@ -7,8 +7,6 @@ import { useParams } from 'react-router-dom';
 import ola from '../../utils/placeholder.jpg'
 
 export default function Compra() {
-    localStorage.setItem('token', 'Bearer ')
-
     const {mitoId} = useParams();
     const [data, setData] = useState([])
     const token = localStorage.getItem("token");
