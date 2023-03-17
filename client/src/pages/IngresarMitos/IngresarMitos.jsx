@@ -6,6 +6,7 @@ export default function IngresarMitos() {
     const [Historia,setHistoria] = useState('');
     const [Precio,setPrecio] = useState('');
     const [Foto,setFoto] = useState(null);
+    const [imagenejemplo,setImagenejemplo] = useState(null);
     const token = localStorage.getItem("token");
     const tokenHeader = {headers:{ Authorization: token }};
 
@@ -71,11 +72,12 @@ export default function IngresarMitos() {
             onChange={(e) => {
                 if (e.target.files && e.target.files[0]) {
                     setFoto(e.target.files[0]);
-
+                    //lo de abajo solo es para mostrarla en el cliente
+                    setImagenejemplo(URL.createObjectURL(e.target.files[0]));
                   }
             }}
             />
-            {Foto && <img src={Foto} alt="uploaded" />}
+            {imagenejemplo && <img src={imagenejemplo} alt="uploaded" />}
 
         </div>
         <button className={style.button} onClick={HandleClick}>Enviar</button>
