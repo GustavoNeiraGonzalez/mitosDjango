@@ -21,7 +21,7 @@ export default function App() {
       console.log(error)
       console.log(error.response.data)
       if(error.response.data.detail==="Given token not valid for any token type"){
-        
+        localStorage.removeItem("token");
       }  })
   },[])
 
