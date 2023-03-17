@@ -5,9 +5,9 @@ export default function IngresarMitos() {
     const [Mito,setMito] = useState('');
     const [Historia,setHistoria] = useState('');
     const [Precio,setPrecio] = useState('');
-    const [Foto,setFoto] = useState('');
+    const [Foto,setFoto] = useState(null);
     const token = localStorage.getItem("token");
-    const tokenHeader = { Authorization: token };
+    const tokenHeader = {headers:{ Authorization: token }};
 
 
     const HandleClick = (e) => {
@@ -17,13 +17,16 @@ export default function IngresarMitos() {
       if(Mito === '' || Historia==='' || Precio===0 ||isNaN(Precio)===true){
         console.log("No dejar en blanco password username precio ")
       }else{
-        axios.post("http://127.0.0.1:8000/api/mitos/",{
-            Mito:Mito,
-            historia:Historia,
-            precio:Precio,
-            Foto:Foto,
-            headers:tokenHeader
-        })
+        const formData = new FormData();
+        formData.append('Mito', Mito);
+        formData.append('historia', Historia);
+        formData.append('precio', Precio);
+        formData.append('Foto', Foto);
+
+        axios.post("http://127.0.0.1:8000/api/mitos/",
+        formData
+        , tokenHeader)
+
         .then((response)=>{
             console.log(response)
         })
@@ -66,11 +69,14 @@ export default function IngresarMitos() {
             <label htmlFor="foto" className={style.formgrouplabel}>Foto</label>
             <input type="file" name="foto"
             onChange={(e) => {
-                const archivo = e.target.files[0];
-                const archivoBase64 = archivo.toDataURL();
-                setFoto(archivoBase64);
+                if (e.target.files && e.target.files[0]) {
+                    setFoto(e.target.files[0]);
+
+                  }
             }}
             />
+            {Foto && <img src={Foto} alt="uploaded" />}
+
         </div>
         <button className={style.button} onClick={HandleClick}>Enviar</button>
     </form>
