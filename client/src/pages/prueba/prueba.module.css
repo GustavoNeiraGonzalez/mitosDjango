@@ -1,17 +1,3 @@
-
-.navbar {
-    display: flex;
-    padding: 0 20px;
-    background-color: #203747;
-    color: #ffffff;
-    font-weight: bold;
-    position: relative;
-  }
-  
-  .navbarlink {
-    padding: 10px;
-    font-size: 1.2rem;
-    text-decoration: none;
-    color: #ffffff;
-    text-transform: uppercase;
-  }
+.color{
+  color:wheat
+}
