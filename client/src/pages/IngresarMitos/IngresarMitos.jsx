@@ -10,6 +10,7 @@ export default function IngresarMitos() {
     const token = localStorage.getItem("token");
     const tokenHeader = {headers:{ Authorization: token }};
 
+    const [value, setValue] = React.useState('');
 
     const HandleClick = (e) => {
         e.preventDefault()
@@ -54,6 +55,7 @@ export default function IngresarMitos() {
             className={style.formgroupinput}
             onChange={(e) => {
                 setHistoria(e.target.value);
+                console.log(Precio)
             }}
         />
         </div>
@@ -61,9 +63,16 @@ export default function IngresarMitos() {
         <label htmlFor="precio" className={style.formgrouplabel}>Precio</label>
         <input type="text" name="precio"
             className={style.formgroupinput}
+            value={value}
             onChange={(e) => {
-                setPrecio(e.target.value);
-            }}
+              let newValue = e.target.value;
+
+              if (!/^[0-9]*$/.test(newValue)) {
+                newValue = newValue.replace(/[^0-9]/g, '');
+              }
+              setValue(newValue);
+              setPrecio(value)
+             }}
             />
         </div>
         <div className={style.formgroup}>
