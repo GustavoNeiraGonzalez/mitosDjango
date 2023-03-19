@@ -29,7 +29,16 @@ export default function App() {
   }, []);
 
   const handleAddToCart = (product) => {
-    setCartItems((prevItems) => [...prevItems, product]);
+    setCartItems((prevItems) => {
+      // Verificar si el producto ya está en el carrito
+      if (prevItems.some((item) => item.mitoId === product.mitoId)) {
+        // Si el producto ya está en el carrito, no agregarlo de nuevo
+        return prevItems;
+      } else {
+        // Si el producto no está en el carrito, agregarlo
+        return [...prevItems, product];
+      }
+    });
     setIsCartOpen(true);
   };
 
@@ -44,6 +53,31 @@ export default function App() {
 
   return (
     <Container className={style.minH}>
+      <div className={`${style.cartcontainer} ${isCartOpen ? 'open' : ''}`}>
+        <h2 className={style.cartcontainerh2}>Carrito de compras</h2>
+        <button className={style.cartcontainerbutton}
+        onClick={() => setIsCartOpen(!isCartOpen)}>
+          
+          {isCartOpen ? 'Cerrar -' : 'abrir +'}
+        </button>
+
+        {isCartOpen && (
+          <>
+            <ul>
+              {cartItems.map((item) => (
+                <li key={item.mitoId}>
+                  {item.Mito} - ${item.precio}
+                  <button className={style.cartcontainerbutton} onClick={() => handleRemoveFromCart(item)}>
+                    Eliminar del carrito
+                  </button>
+                </li>
+              ))}
+            </ul>
+
+            <p>Total: ${cartItems.reduce((total, item) => total + item.precio, 0)}</p>
+          </>
+        )}
+      </div>
       <Row>
         {data.map((total) => (
           <Card
@@ -72,26 +106,8 @@ export default function App() {
         ))}
       </Row>
 
-      <h2>Carrito de compras</h2>
-      <button onClick={() => setIsCartOpen(!isCartOpen)}>
-        {isCartOpen ? 'Ocultar carrito' : 'Mostrar carrito'}
-      </button>
-      {isCartOpen && (
-        <>
-          <ul>
-            {cartItems.map((item) => (
-              <li key={item.mitoId}>
-                {item.Mito} - ${item.precio}
-                <button onClick={() => handleRemoveFromCart(item)}>
-                  Eliminar del carrito
-                </button>
-              </li>
-            ))}
-          </ul>
+      
 
-          <p>Total: ${cartItems.reduce((total, item) => total + item.precio, 0)}</p>
-        </>
-      )}
     </Container>
   );
 }

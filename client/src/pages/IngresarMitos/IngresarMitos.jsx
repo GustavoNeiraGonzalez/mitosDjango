@@ -55,7 +55,6 @@ export default function IngresarMitos() {
             className={style.formgroupinput}
             onChange={(e) => {
                 setHistoria(e.target.value);
-                console.log(Precio)
             }}
         />
         </div>

@@ -11,3 +11,24 @@
     max-height: 262px;
     min-height: 262px;
   }
+  .cartcontainer{
+    position: fixed;
+    top: 10px;
+    right:10px;
+    background-color:#1f2331;
+    color:wheat;
+    border-radius:5px;
+    padding:10px;
+    z-index: 9999;
+    overflow-y: hidden; /* Agregar esta línea */
+  }
+  
+
+  
+  .cartcontainerbutton{
+    float:right;
+  }
+  
+  .cartcontainerh2{
+    margin-top:0px;
+  }
