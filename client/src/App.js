@@ -12,8 +12,15 @@ export default function App() {
   const token = localStorage.getItem('token');
   const tokenHeader = { Authorization: token };
   const [data, setData] = useState([]);
-  const [cartItems, setCartItems] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
+
+  const [cartItems, setCartItems] = useState(
+    () => JSON.parse(localStorage.getItem('cart')) || []
+  );
+
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cartItems));
+  }, [cartItems]);
 
   useEffect(() => {
     axios
