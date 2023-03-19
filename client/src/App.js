@@ -108,13 +108,11 @@ export default function App() {
               <Button onClick={() => handleAddToCart(total)}>
                 Agregar al carrito
               </Button>
+              <Link to={'/Compra/'+total.mitoId}><Button variant="primary">Ir a comprar</Button></Link>
             </Card.Body>
           </Card>
         ))}
       </Row>
-
-      
-
     </Container>
   );
 }
