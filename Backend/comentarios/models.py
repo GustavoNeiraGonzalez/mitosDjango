@@ -4,7 +4,7 @@ from MitosApp.models import mitos
 
 class Comment(models.Model):
     # Campos del modelo de comentarios
-    mitoId = models.AutoField(primary_key=True)
+    comentarioId = models.AutoField(primary_key=True)
     created_at = models.DateTimeField(auto_now_add=True)
     comentario = models.TextField()
     rating = models.IntegerField( null=True)

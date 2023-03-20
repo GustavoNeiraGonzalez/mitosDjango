@@ -8,6 +8,6 @@ from django.conf import settings
 
 router = routers.DefaultRouter()
 
-router.register('api/mitos', mitosViewSet, 'mitos')
+router.register(r'api/mitos', mitosViewSet)
 
 urlpatterns = router.urls +static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
