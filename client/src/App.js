@@ -21,7 +21,7 @@ export default function App() {
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cartItems));
   }, [cartItems]);
-
+  console.log(tokenHeader)
   useEffect(() => {
     axios
       .get('http://127.0.0.1:8000/api/mitos/', { headers: tokenHeader })
