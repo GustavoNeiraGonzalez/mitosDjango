@@ -32,6 +32,7 @@ export default function Compra() {
       },tokenHeader)
       .then((response)=>{
         console.log(response)
+        console.log("subido :D")
       })
       .catch(err => console.log(err.response.data))
 
@@ -53,7 +54,7 @@ export default function Compra() {
             <Card.Text>
             {data.historia}
             </Card.Text>
-            <Button variant="primary">Go somewhere</Button>
+            <Button variant="primary">boton que no hace nada</Button>
         </Card.Body>
         </Card>
       <form  className={style2.form}>
@@ -82,7 +83,7 @@ export default function Compra() {
           ))}
         </select>
         <br />
-        <button type="submit" className={style2.button} onClick={HandleClick}>Submit</button>
+        <button type="submit" className={style2.button} onClick={HandleClick}>subir comentario</button>
     </form>
   </div>
     

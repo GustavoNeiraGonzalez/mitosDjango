@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from rest_framework_simplejwt.authentication import JWTAuthentication
-from .models import Comment
+from .models import Comments
 import jwt
 from django.conf import settings
 from django.contrib.auth import get_user_model
@@ -8,7 +8,7 @@ from django.contrib.auth import get_user_model
 
 class CommentSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Comment
+        model = Comments
         fields = ['comentarioId', 'created_at', 'comentario', 'rating', 'user', 'mitos']
 
     def validate_rating(self, value):
@@ -35,7 +35,7 @@ class CommentSerializer(serializers.ModelSerializer):
         user = User.objects.get(pk=user_id)
 
         # Crear y guardar una instancia del modelo User utilizando los datos validados
-        instance = Comment.objects.create(user=user, **validated_data)
+        instance = Comments.objects.create(user=user, **validated_data)
 
         # Devolver la instancia creada
         return instance

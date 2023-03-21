@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from MitosApp.models import mitos
 
-class Comment(models.Model):
+class Comments(models.Model):
     # Campos del modelo de comentarios
     comentarioId = models.AutoField(primary_key=True)
     created_at = models.DateTimeField(auto_now_add=True)

@@ -51,7 +51,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'MitosApp',
     'LoginApp',
-    'comentarios',
+    'comentario',
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True
