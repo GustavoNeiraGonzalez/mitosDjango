@@ -6,6 +6,8 @@ import axios from 'axios'
 import { useParams } from 'react-router-dom';
 import ola from '../../utils/placeholder.jpg'
 import style2 from './Compra.module.css'
+import jwtDecode from 'jwt-decode';
+
 export default function Compra() {
     const {mitoId} = useParams();
     const [data, setData] = useState([])
@@ -18,6 +20,12 @@ export default function Compra() {
 
     const token = localStorage.getItem("token");
     const tokenHeader = {headers:{ Authorization: token }};
+    let loggedInUserId = null;
+    if (token) {
+      const decodedToken = jwtDecode(token);
+      loggedInUserId = decodedToken.user_id;
+    }
+  
     //para obtener el mito en especifico
     useEffect(() => {
       axios.get("http://127.0.0.1:8000/api/mitos/"+mitoId+"/"
@@ -142,6 +150,12 @@ export default function Compra() {
           </div>
           <p className={style2.textoComentario}>{comentario.comentario}</p>
           <div className={style2.rating}>rating del mito :D : {comentario.rating}</div>
+          {loggedInUserId && comentario.user === loggedInUserId && (
+            <button >
+              Eliminar comentario
+            </button>
+          )}
+
       </div>)
     })}
   </div>
