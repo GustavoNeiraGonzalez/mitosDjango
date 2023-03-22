@@ -35,4 +35,6 @@ class CommentViewSet(viewsets.ModelViewSet):
             comment = self.get_object()
             if comment.user != request.user:
                 return JsonResponse({'error': 'You do not have permission to delete this comment.'}, status=403)
+            else:
+                return JsonResponse({"correcto:D":"olaXD"})
             return super().destroy(request, *args, **kwargs)
