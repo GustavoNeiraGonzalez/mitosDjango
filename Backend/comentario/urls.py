@@ -7,4 +7,7 @@ router.register(r'api/comentarios', CommentViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('api/comentarios/', CommentViewSet.as_view({'get': 'list'})),
+    path('api/comentarios/mitos/<int:mitos>/', CommentViewSet.as_view({'get': 'list'})),
+
 ]

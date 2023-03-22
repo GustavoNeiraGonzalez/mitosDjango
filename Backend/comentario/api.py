@@ -13,6 +13,13 @@ class CommentViewSet(viewsets.ModelViewSet):
         context = super().get_serializer_context()
         context['request'] = self.request
         return context
+    def get_queryset(self):
+        if 'mitos' in self.kwargs:
+            mitos = self.kwargs['mitos']
+            return Comments.objects.filter(mitos=mitos)
+        else:
+            return Comments.objects.all()
+
 
     def perform_create(self, serializer):
         serializer.save()

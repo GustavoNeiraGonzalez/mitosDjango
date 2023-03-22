@@ -9,11 +9,13 @@ import style2 from './Compra.module.css'
 export default function Compra() {
     const {mitoId} = useParams();
     const [data, setData] = useState([])
+    const [dataComentario, setDataComentario] = useState([])
     const [comentario, setComentario] = useState()
     const [rating, setRating] = useState()
     const token = localStorage.getItem("token");
     const tokenHeader = {headers:{ Authorization: token }};
     console.log(tokenHeader)
+    //para obtener el mito en especifico
     useEffect(() => {
       axios.get("http://127.0.0.1:8000/api/mitos/"+mitoId+"/"
       ,tokenHeader)
@@ -22,6 +24,8 @@ export default function Compra() {
         console.log(err.response.data)
       })
     }, [])
+    //para obtener los comentarios
+   
 
     const HandleClick = (e) => {
       e.preventDefault()
