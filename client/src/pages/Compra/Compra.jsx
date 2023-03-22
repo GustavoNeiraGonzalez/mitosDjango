@@ -76,7 +76,18 @@ export default function Compra() {
       .catch(err => console.log(err.response.data))
 
     }
-    //useEffect para logear y guardar el token en el localstorage
+    //para borrar el comentario
+    const handleDelete = (comentarioId) => {
+      axios
+        .delete(`http://127.0.0.1:8000/api/comentarios/${comentarioId}/`, tokenHeader)
+        .then((response) => {
+          console.log(response);
+          console.log('Comentario eliminado');
+          // Actualizar la lista de comentarios después de eliminar un comentario
+          setDataComentario(dataComentario.filter((comentario) => comentario.comentarioId !== comentarioId));
+        })
+        .catch((err) => console.log(err.response.data));
+    };
     
     
   return (
@@ -151,8 +162,9 @@ export default function Compra() {
           <p className={style2.textoComentario}>{comentario.comentario}</p>
           <div className={style2.rating}>rating del mito :D : {comentario.rating}</div>
           {loggedInUserId && comentario.user === loggedInUserId && (
-            <button >
-              Eliminar comentario
+            
+            <button onClick={() => handleDelete(comentario.comentarioId)}>
+            Eliminar comentario
             </button>
           )}
 
