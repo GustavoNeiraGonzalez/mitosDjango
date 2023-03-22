@@ -14,7 +14,6 @@ export default function Compra() {
     const [rating, setRating] = useState()
     const token = localStorage.getItem("token");
     const tokenHeader = {headers:{ Authorization: token }};
-    console.log(tokenHeader)
     //para obtener el mito en especifico
     useEffect(() => {
       axios.get("http://127.0.0.1:8000/api/mitos/"+mitoId+"/"
@@ -25,7 +24,17 @@ export default function Compra() {
       })
     }, [])
     //para obtener los comentarios
-   
+    useEffect(() => {
+      axios.get("http://127.0.0.1:8000/api/comentarios/mitos/"+mitoId+"/"
+      ,tokenHeader)
+      .then(all =>{
+        setDataComentario(all.data);
+        console.log(all.data);
+      })
+      .catch(err =>{
+        console.log(err.response.data)
+      })
+    }, [])
 
     const HandleClick = (e) => {
       e.preventDefault()
