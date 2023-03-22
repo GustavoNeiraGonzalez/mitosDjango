@@ -31,3 +31,8 @@ class CommentViewSet(viewsets.ModelViewSet):
 
     def perform_update(self, serializer):
         serializer.save()
+    def destroy(self, request, *args, **kwargs):
+            comment = self.get_object()
+            if comment.user != request.user:
+                return JsonResponse({'error': 'You do not have permission to delete this comment.'}, status=403)
+            return super().destroy(request, *args, **kwargs)
