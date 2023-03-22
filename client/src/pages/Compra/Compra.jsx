@@ -12,6 +12,10 @@ export default function Compra() {
     const [dataComentario, setDataComentario] = useState([])
     const [comentario, setComentario] = useState()
     const [rating, setRating] = useState()
+    const [nombre, setNombre] = useState()
+    const [user, setUser] = useState()
+
+
     const token = localStorage.getItem("token");
     const tokenHeader = {headers:{ Authorization: token }};
     //para obtener el mito en especifico
@@ -25,17 +29,35 @@ export default function Compra() {
     }, [])
     //para obtener los comentarios
     useEffect(() => {
-      axios.get("http://127.0.0.1:8000/api/comentarios/mitos/"+mitoId+"/"
-      ,tokenHeader)
-      .then(all =>{
-        setDataComentario(all.data);
-        console.log(all.data);
-      })
-      .catch(err =>{
-        console.log(err.response.data)
-      })
-    }, [])
+        axios.get("http://127.0.0.1:8000/api/comentarios/mitos/"+mitoId+"/"
+        )
+        .then(all =>{
+          setDataComentario(all.data);
+          console.log(all.data);
 
+          // Almacenar el valor del campo user
+          const user = all.data[0].user;
+          setUser(user);
+          console.log(user)
+        })
+        .catch(err =>{
+          console.log(err.response.data)
+        })
+    }, [])
+    //aqui para obtener el nombre de user
+    useEffect(() => {
+      if (user){
+        axios.get("http://127.0.0.1:8000/login/"+user+"/"
+        )
+        .then(all =>{
+          setNombre(all.data.username);
+          console.log(all.data);
+        })
+        .catch(err =>{
+          console.log(err.response.data)
+        })
+      }
+    }, [user])
     const HandleClick = (e) => {
       e.preventDefault()
       axios.post("http://127.0.0.1:8000/api/comentarios/",{
@@ -98,6 +120,34 @@ export default function Compra() {
         <br />
         <button type="submit" className={style2.button} onClick={HandleClick}>subir comentario</button>
     </form>
+    {dataComentario.map((comentario) =>{
+        // Obtener la fecha de creación del comentario
+      const fecha_creacion = comentario.created_at;
+      const fecha = new Date(fecha_creacion);
+
+      // Obtener el día, mes y año
+      const dia = fecha.getDate();
+      const mes = fecha.getMonth() + 1; // Los meses en JavaScript van de 0 a 11
+      const anio = fecha.getFullYear();
+
+      // Obtener la hora y minutos
+      const hora = fecha.getHours();
+      const minutos = fecha.getMinutes();
+
+      // Formatear la fecha como día/mes/año y hora:minutos
+      const fecha_formateada = `${dia}/${mes}/${anio} ${hora}:${minutos}`;
+      return (
+      <div key={comentario.comentarioId} className={style2.comentario}>
+
+          <div className={style2.usuarioFecha}>
+            <span className={style2.nombreUsuario}>nombre de usuario: {nombre}</span>
+
+            <span className={style2.fechaCreacion}>fecha:{fecha_formateada}</span>
+          </div>
+          <p className={style2.textoComentario}>{comentario.comentario}</p>
+          <div className={style2.rating}>rating del mito :D :{comentario.rating}</div>
+      </div>)
+    })}
   </div>
     
   )

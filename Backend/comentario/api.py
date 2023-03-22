@@ -3,6 +3,7 @@ from .models import Comments
 from .serializers import CommentSerializer
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from django.contrib.auth import get_user_model
+from django.http import JsonResponse
 
 class CommentViewSet(viewsets.ModelViewSet):
     queryset = Comments.objects.all()
@@ -20,6 +21,10 @@ class CommentViewSet(viewsets.ModelViewSet):
         else:
             return Comments.objects.all()
 
+    def get(self, request, *args, **kwargs):
+        queryset = self.get_queryset()
+        data = list(queryset.values())
+        return JsonResponse(data, safe=False)
 
     def perform_create(self, serializer):
         serializer.save()

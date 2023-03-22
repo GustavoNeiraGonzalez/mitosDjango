@@ -24,3 +24,41 @@ margin-top: 10px;
 .button:hover {
     background-color: wheat;
   }
+
+  .comentarios {
+    /* Estilos para la zona de comentarios */
+  }
+  .comentario {
+    /* Estilos para cada comentario individual */
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px rgba(0,0,0,.1);
+    margin-bottom: 10px;
+    padding: 10px;
+    color: black;
+  }
+  
+  .usuarioFecha {
+    /* Estilos para la zona del nombre de usuario y fecha de creación */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  
+  .nombreUsuario {
+    /* Estilos para el nombre de usuario */
+    font-size: smaller;
+  }
+  
+.fechaCreacion {
+  /* Estilos para la fecha de creación */
+  font-size: smaller;
+}
+
+.textoComentario {
+  /* Estilos para el texto del comentario */
+}
+
+.rating {
+  /* Estilos para el rating */
+}
