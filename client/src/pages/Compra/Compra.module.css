@@ -8,6 +8,15 @@
 .label {
 margin-top: 10px;
 }
+.inputtexto{
+  width: 65%;
+  height: 100px;
+  font-size: 20px;
+  margin: auto;
+  resize: none;
+  overflow: hidden;
+  border-radius: 10px;
+}
 
 .inputselect {
     margin: auto;
@@ -30,8 +39,8 @@ margin-top: 10px;
   }
   .comentario {
     /* Estilos para cada comentario individual */
-    background-color: #f1f1f1;
-    border-radius: 5px;
+    background-color: wheat;
+    border-radius: 10px;
     box-shadow: 0px 2px 5px rgba(0,0,0,.1);
     margin-bottom: 10px;
     padding: 10px;

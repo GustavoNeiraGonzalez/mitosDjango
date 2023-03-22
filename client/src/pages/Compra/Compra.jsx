@@ -33,12 +33,9 @@ export default function Compra() {
         )
         .then(all =>{
           setDataComentario(all.data);
-          console.log(all.data);
-
           // Almacenar el valor del campo user
           const user = all.data[0].user;
           setUser(user);
-          console.log(user)
         })
         .catch(err =>{
           console.log(err.response.data)
@@ -51,7 +48,6 @@ export default function Compra() {
         )
         .then(all =>{
           setNombre(all.data.username);
-          console.log(all.data);
         })
         .catch(err =>{
           console.log(err.response.data)
@@ -77,7 +73,6 @@ export default function Compra() {
     
   return (
     <div className={style.minH}>
-        {console.log(data)}
         
         <Card style={{ width: '18rem', backgroundColor:"antiquewhite", color:"black"}}>
         <Card.Img variant="top" src={ data.Foto ? data.Foto : ola} />
@@ -94,11 +89,11 @@ export default function Compra() {
         </Card>
       <form  className={style2.form}>
         <label htmlFor="comentario" className={style2.label}>comentario:</label>
-        <input
+        <textarea rows="4" cols="50" maxLength="85"
           type="text"
           id="comentario"
           name="comentario"
-          className={style2.inputselect}
+          className={style2.inputtexto}
           onChange={(e) => {
             setComentario(e.target.value);}}
         />        
@@ -120,6 +115,7 @@ export default function Compra() {
         <br />
         <button type="submit" className={style2.button} onClick={HandleClick}>subir comentario</button>
     </form>
+    <br />
     {dataComentario.map((comentario) =>{
         // Obtener la fecha de creación del comentario
       const fecha_creacion = comentario.created_at;
@@ -145,7 +141,7 @@ export default function Compra() {
             <span className={style2.fechaCreacion}>fecha:{fecha_formateada}</span>
           </div>
           <p className={style2.textoComentario}>{comentario.comentario}</p>
-          <div className={style2.rating}>rating del mito :D :{comentario.rating}</div>
+          <div className={style2.rating}>rating del mito :D : {comentario.rating}</div>
       </div>)
     })}
   </div>
