@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import style from './IngresarMitos.module.css'
 import axios from 'axios'
+import swal from 'sweetalert2';
 export default function IngresarMitos() {
     const [Mito,setMito] = useState('');
     const [Historia,setHistoria] = useState('');
@@ -17,7 +18,11 @@ export default function IngresarMitos() {
   
       //useEffect para logear y guardar el token en el localstorage
       if(Mito === '' || Historia==='' || Precio===0 ||isNaN(Precio)===true){
-        console.log("No dejar en blanco password username precio ")
+        swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: "No dejar ningún campo vacio",
+        })
       }else{
         const formData = new FormData();
         formData.append('Mito', Mito);
@@ -31,8 +36,20 @@ export default function IngresarMitos() {
 
         .then((response)=>{
             console.log(response)
+            swal.fire({
+              icon: 'success',
+              title: 'has ingresado el mito con exito :D',
+              showConfirmButton: false,
+              timer: 1500
+            })
         })
-        .catch(err => console.log(err.response.data))
+        .catch(err => {console.log(err.response.data)
+          swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: err.response.data.detail,
+          })
+        })
   
       }
     }
