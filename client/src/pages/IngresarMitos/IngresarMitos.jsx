@@ -2,7 +2,9 @@ import React, { useState } from 'react'
 import style from './IngresarMitos.module.css'
 import axios from 'axios'
 import swal from 'sweetalert2';
-export default function IngresarMitos() {
+import withAuth from '../../withAuth/withAuth'
+
+function IngresarMitos() {
     const [Mito,setMito] = useState('');
     const [Historia,setHistoria] = useState('');
     const [Precio,setPrecio] = useState('');
@@ -109,3 +111,4 @@ export default function IngresarMitos() {
     </form>
   )
 }
+export default withAuth(IngresarMitos);

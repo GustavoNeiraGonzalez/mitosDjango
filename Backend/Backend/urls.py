@@ -19,7 +19,7 @@ from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
-from LoginApp.api import loginAPI
+from LoginApp.api import loginAPI, check_token
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,6 +27,7 @@ urlpatterns = [
     path('',include('comentario.urls')),
     path('api/login/create/',loginAPI.as_view(),name="api_create_user    "),
     path('login/<int:user_id>/', loginAPI.as_view()),
+    path('checkToken', check_token),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]

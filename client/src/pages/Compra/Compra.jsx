@@ -14,10 +14,10 @@ export default function Compra() {
     const [data, setData] = useState([])
     const [dataComentario, setDataComentario] = useState([])
     const [comentario, setComentario] = useState()
-    const [rating, setRating] = useState()
+    const [rating, setRating] = useState(1)
     const [nombre, setNombre] = useState()
     const [user, setUser] = useState()
-
+    
 
     const token = localStorage.getItem("token");
     const tokenHeader = {headers:{ Authorization: token }};
