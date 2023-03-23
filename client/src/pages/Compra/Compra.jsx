@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom';
 import ola from '../../utils/placeholder.jpg'
 import style2 from './Compra.module.css'
 import jwtDecode from 'jwt-decode';
+import swal from 'sweetalert2';
 
 export default function Compra() {
     const {mitoId} = useParams();
@@ -74,9 +75,19 @@ export default function Compra() {
         // Actualizar el estado con el nuevo arreglo de comentarios
         setDataComentario(updatedComments);
         console.log(response)
-        console.log("subido :D")
+        swal.fire({
+          icon: 'success',
+          title: 'has ingresado el comentario con exito :D',
+          showConfirmButton: false,
+          timer: 1500
+        })
       })
-      .catch(err => console.log(err.response.data))
+      .catch(err => {console.log(err.response.data)
+        swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: err.response.data.detail,
+        })})
 
     }
     //para borrar el comentario
@@ -88,8 +99,21 @@ export default function Compra() {
           console.log('Comentario eliminado');
           // Actualizar la lista de comentarios después de eliminar un comentario
           setDataComentario(dataComentario.filter((comentario) => comentario.comentarioId !== comentarioId));
+          swal.fire({
+            icon: 'success',
+            title: 'has borrado el comentario con exito',
+            showConfirmButton: false,
+            timer: 1500
+          })
         })
-        .catch((err) => console.log(err.response.data));
+        .catch((err) => {
+          console.log(err.response.data)
+          swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: err.response.data.detail,
+          })
+        });
     };
     
     
