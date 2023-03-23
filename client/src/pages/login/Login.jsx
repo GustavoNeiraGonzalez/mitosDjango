@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react'
 import style from './login.module.css'
+import swal from 'sweetalert2';
+
 export default function Login() {
   const [username,setUsername] = useState('');
   const [password,setPassword] = useState('');
@@ -16,7 +18,13 @@ export default function Login() {
 
     //useEffect para logear y guardar el token en el localstorage
     if(username === '' || password===''){
-      console.log("No dejar en blanco password username")
+      
+        swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: "No dejar en blanco password y/o username",
+        })
+      
     }else{
 
       axios.post("http://127.0.0.1:8000/api/token/",{
@@ -28,8 +36,21 @@ export default function Login() {
         console.log("logeado:D")
         inputRef.current.value = "";
         inputRef2.current.value = "";
+        swal.fire({
+          icon: 'success',
+          title: 'has sido logeado con exito mi pana',
+          showConfirmButton: false,
+          timer: 1500
+        })
       })
-      .catch(err => console.log(err.response.data))
+      .catch(err => {
+        console.log(err.response.data)
+        swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: err.response.data.detail,
+        })
+      })
 
     }
   }
