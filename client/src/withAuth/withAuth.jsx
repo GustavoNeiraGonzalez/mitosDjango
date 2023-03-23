@@ -11,9 +11,7 @@ export default function withAuth(ComponentToProtect) {
           redirect: false,
         };
       }
-  
-     
-  
+
       componentDidMount() {
         const token = localStorage.getItem("token");
         const tokenHeader = {headers:{ Authorization: token }};
