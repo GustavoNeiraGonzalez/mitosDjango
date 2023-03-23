@@ -28,8 +28,7 @@ export default function Compra() {
   
     //para obtener el mito en especifico
     useEffect(() => {
-      axios.get("http://127.0.0.1:8000/api/mitos/"+mitoId+"/"
-      ,tokenHeader)
+      axios.get("http://127.0.0.1:8000/api/mitos/"+mitoId+"/")
       .then(allData =>setData(allData.data))
       .catch(err =>{
         console.log(err.response.data)
@@ -70,6 +69,10 @@ export default function Compra() {
         mitos:data.mitoId
       },tokenHeader)
       .then((response)=>{
+        // Agregar el nuevo comentario al arreglo de comentarios existente
+        const updatedComments = [...dataComentario, response.data];
+        // Actualizar el estado con el nuevo arreglo de comentarios
+        setDataComentario(updatedComments);
         console.log(response)
         console.log("subido :D")
       })
