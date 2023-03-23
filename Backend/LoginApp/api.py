@@ -29,12 +29,15 @@ class loginAPI(APIView):
 @api_view(['GET'])
 def check_token(request):
     token = request.META.get('HTTP_AUTHORIZATION')
+    print(f'Token: {token}') # Imprime el valor del token
     if token:
         try:
             # Verifica si el token es válido utilizando la clase JWTAuthentication
             jwt = JWTAuthentication()
             validated_token = jwt.get_validated_token(token.split()[1])
+            print(f'Validated token: {validated_token}') # Imprime el token validado
             return Response(status=status.HTTP_200_OK)
-        except:
+        except Exception as e:
+            print(f'Error: {e}') # Imprime el error si ocurre una excepción
             pass
     return Response(status=status.HTTP_401_UNAUTHORIZED)

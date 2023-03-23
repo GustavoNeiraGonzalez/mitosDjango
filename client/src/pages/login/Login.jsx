@@ -42,6 +42,7 @@ export default function Login() {
           showConfirmButton: false,
           timer: 1500
         })
+        window.location.reload(); // Recarga la página
       })
       .catch(err => {
         console.log(err.response.data)

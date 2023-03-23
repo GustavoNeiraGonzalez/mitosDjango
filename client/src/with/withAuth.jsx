@@ -3,17 +3,20 @@ import React from 'react';
 import { Navigate } from 'react-router-dom';
 
 export default function withAuth(ComponentToProtect) {
-  return class extends React.Component {
-    constructor() {
-      super();
-      this.state = {
-        loading: true,
-        redirect: false,
-      };
+    const token = localStorage.getItem("token");
+    const tokenHeader = {headers:{ Authorization: token }};
+
+    return class extends React.Component {
+        constructor() {
+        super();
+        this.state = {
+            loading: true,
+            redirect: false,
+        };
     }
 
     componentDidMount() {
-        axios.get('http://127.0.0.1:8000/checkToken')
+        axios.get('http://127.0.0.1:8000/checkToken',tokenHeader)
         .then(res => {
           if (res.status === 200) {
             this.setState({ loading: false });
