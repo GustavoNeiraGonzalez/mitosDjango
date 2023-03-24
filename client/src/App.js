@@ -51,6 +51,12 @@ export default function App() {
       // Verificar si el producto ya está en el carrito
       if (prevItems.some((item) => item.mitoId === product.mitoId)) {
         // Si el producto ya está en el carrito, no agregarlo de nuevo
+        swal.fire({
+          icon: 'success',
+          title: 'has agregado el mito al carrito :D',
+          showConfirmButton: false,
+          timer: 1500
+        })
         return prevItems;
       } else {
         // Si el producto no está en el carrito, agregarlo
