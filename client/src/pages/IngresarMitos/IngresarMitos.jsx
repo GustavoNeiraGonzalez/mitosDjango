@@ -89,7 +89,7 @@ function IngresarMitos() {
                 newValue = newValue.replace(/[^0-9]/g, '');
               }
               setValue(newValue);
-              setPrecio(value)
+              setPrecio(newValue)
              }}
             />
         </div>
