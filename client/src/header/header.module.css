@@ -15,3 +15,13 @@
     color: wheat;
     text-transform: uppercase;
   }
+  .button{
+    background-color: #202426;
+    color: wheat;
+    border-radius: 15px;
+    padding:5px
+  }
+  .button:hover{
+    background-color: rgb(194, 175, 139);
+    color: #202426;
+  }
