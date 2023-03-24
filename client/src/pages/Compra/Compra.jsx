@@ -22,9 +22,12 @@ export default function Compra() {
     const token = localStorage.getItem("token");
     const tokenHeader = {headers:{ Authorization: token }};
     let loggedInUserId = null;
+    let isTokenExpired = true;
+
     if (token) {
       const decodedToken = jwtDecode(token);
       loggedInUserId = decodedToken.user_id;
+      isTokenExpired = decodedToken.exp * 1000 < Date.now();
     }
   
     //para obtener el mito en especifico
@@ -188,7 +191,7 @@ export default function Compra() {
           </div>
           <p className={style2.textoComentario}>{comentario.comentario}</p>
           <div className={style2.rating}>rating del mito :D : {comentario.rating}</div>
-          {loggedInUserId && comentario.user === loggedInUserId && (
+          {!isTokenExpired && loggedInUserId && comentario.user === loggedInUserId && (
             
             <button onClick={() => handleDelete(comentario.comentarioId)}>
             Eliminar comentario

@@ -7,12 +7,23 @@ import Row from 'react-bootstrap/Row';
 import style from './pages/minHeight.module.css';
 import ola from './utils/placeholder.jpg';
 import { Link } from 'react-router-dom';
+import jwtDecode from 'jwt-decode';
+import swal from 'sweetalert2';
 
 export default function App() {
   const token = localStorage.getItem('token');
-  const tokenHeader = { Authorization: token };
+  const tokenHeader = {headers:{ Authorization: token }};
   const [data, setData] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
+
+  let loggedInUserId = null;
+  let isTokenExpired = true;
+
+  if (token) {
+    const decodedToken = jwtDecode(token);
+    loggedInUserId = decodedToken.user_id;
+    isTokenExpired = decodedToken.exp * 1000 < Date.now();
+  }
 
   const [cartItems, setCartItems] = useState(
     () => JSON.parse(localStorage.getItem('cart')) || []
@@ -24,7 +35,8 @@ export default function App() {
   useEffect(() => {
     axios
       .get('http://127.0.0.1:8000/api/mitos/')
-      .then((allData) => setData(allData.data))
+      .then((allData) => {setData(allData.data)
+      })
       .catch((error) => {
         console.log(error);
         console.log(error.response.data);
@@ -57,6 +69,29 @@ export default function App() {
     }
   };
 
+  const handleDelete = (mitoId) => {
+    axios
+      .delete(`http://127.0.0.1:8000/api/mitos/${mitoId}/`, tokenHeader)
+      .then((response) => {
+        // Actualizar la lista de comentarios después de eliminar un comentario
+        setData(data.filter((data) => data.mitoId !== mitoId));
+        swal.fire({
+          icon: 'success',
+          title: 'has borrado el mito con exito',
+          showConfirmButton: false,
+          timer: 1500
+        })
+      })
+      .catch((err) => {
+        console.log(err.response.data)
+        swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: err.response.data.detail,
+        })
+      });
+  };
+
   return (
     <Container className={style.minH}>
       <div className={`${style.cartcontainer} ${isCartOpen ? 'open' : ''}`}>
@@ -71,6 +106,7 @@ export default function App() {
           <>
             <ul>
               {cartItems.map((item) => (
+
                 <li key={item.mitoId}>
                   {item.Mito} - ${item.precio}
                   <button className={style.cartcontainerbutton} onClick={() => handleRemoveFromCart(item)}>
@@ -108,6 +144,16 @@ export default function App() {
                 Agregar al carrito
               </Button>
               <Link to={'/Compra/'+total.mitoId}><Button variant="primary">Ir a comprar</Button></Link>
+              <br></br>
+              {loggedInUserId && !isTokenExpired && (
+                <Button onClick={() => {
+                  handleDelete(total.mitoId);
+                  handleRemoveFromCart(total)
+                }}>
+                  Eliminar mito
+                </Button>
+              )}
+
             </Card.Body>
           </Card>
         ))}
