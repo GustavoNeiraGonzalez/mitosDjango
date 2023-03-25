@@ -61,7 +61,7 @@ PyJWT==2.6.0
 ## problema encontrado
 al parecer djongo esta desactualizado, y utilizar los permisos de usuarios por defecto de django es imposible.
 
-##Proyecto
+## Proyecto
 -pagina principal
 
 <img width="782" alt="principal" src="https://user-images.githubusercontent.com/71986954/227701026-45574201-d1ac-4737-a5d9-58ab79eee7ce.PNG">
