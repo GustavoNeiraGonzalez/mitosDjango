@@ -6,7 +6,13 @@ padding: 20px;
 display: flex;
 flex-direction: column;
 border-radius: 5px;
+
 }
+.formcontainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
 .formgroup {
 margin-bottom: 15px;

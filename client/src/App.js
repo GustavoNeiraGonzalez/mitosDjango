@@ -40,9 +40,6 @@ export default function App() {
       .catch((error) => {
         console.log(error);
         console.log(error.response.data);
-        if (error.response.data.detail === 'Given token not valid for any token type') {
-          localStorage.removeItem('token');
-        }
       });
   }, []);
 
@@ -146,11 +143,13 @@ export default function App() {
               <Card.Title>{total.Mito}</Card.Title>
               <Card.Text>{total.historia}</Card.Text>
               <Card.Text>${total.precio}</Card.Text>
+              
               <Button onClick={() => handleAddToCart(total)}>
                 Agregar al carrito
               </Button>
-              <Link to={'/Compra/'+total.mitoId}><Button variant="primary">Ir a comprar</Button></Link>
               <br></br>
+              <br></br>
+              <Link to={'/Compra/'+total.mitoId}><Button variant="primary">ver más</Button></Link>
               {loggedInUserId && !isTokenExpired && (
                 <Button onClick={() => {
                   handleDelete(total.mitoId);

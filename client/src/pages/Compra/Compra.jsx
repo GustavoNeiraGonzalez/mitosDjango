@@ -122,20 +122,20 @@ export default function Compra() {
     
   return (
     <div className={style.minH}>
-        
-        <Card style={{ width: '18rem', backgroundColor:"antiquewhite", color:"black"}}>
-        <Card.Img variant="top" src={ data.Foto ? data.Foto : ola} />
-        <Card.Body>
-            <Card.Title>{data.Titulo}</Card.Title>
-            <Card.Text>
-            {data.mitoId}
-            </Card.Text>
-            <Card.Text>
-            {data.historia}
-            </Card.Text>
-            <Button variant="primary">boton que no hace nada</Button>
-        </Card.Body>
+      <div className={style2.cardcontainer}>
+        <Card className={style2.card}>
+          <Card.Img  className={style2.cardimg} variant="top" src={ data.Foto ? data.Foto : ola} />
+          <Card.Body>
+              <Card.Text>{data.Mito}</Card.Text>
+              <Card.Text>
+              {data.historia}
+              </Card.Text>
+              <Card.Text>
+              ${data.precio}
+              </Card.Text>
+          </Card.Body>
         </Card>
+      </div>
       <form  className={style2.form}>
         <label htmlFor="comentario" className={style2.label}>comentario:</label>
         <textarea rows="4" cols="50" maxLength="85"
@@ -169,7 +169,7 @@ export default function Compra() {
         // Obtener la fecha de creación del comentario
       const fecha_creacion = comentario.created_at;
       const fecha = new Date(fecha_creacion);
-
+      console.log(comentario)
       // Obtener el día, mes y año
       const dia = fecha.getDate();
       const mes = fecha.getMonth() + 1; // Los meses en JavaScript van de 0 a 11
@@ -190,12 +190,16 @@ export default function Compra() {
             <span className={style2.fechaCreacion}>fecha:{fecha_formateada}</span>
           </div>
           <p className={style2.textoComentario}>{comentario.comentario}</p>
-          <div className={style2.rating}>rating del mito :D : {comentario.rating}</div>
+          <div className={style2.rating}>rating del mito : {comentario.rating}</div>
+          <br />
           {!isTokenExpired && loggedInUserId && comentario.user === loggedInUserId && (
-            
-            <button onClick={() => handleDelete(comentario.comentarioId)}>
+            <div style={{textAlign: 'center'}}>
+              
+
+            <button className={style2.butt} onClick={() => handleDelete(comentario.comentarioId)}>
             Eliminar comentario
             </button>
+            </div>
           )}
 
       </div>)

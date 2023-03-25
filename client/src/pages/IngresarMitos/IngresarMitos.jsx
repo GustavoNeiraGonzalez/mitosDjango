@@ -58,9 +58,12 @@ function IngresarMitos() {
     
 
   return (
+    <div className={style.formcontainer}>
+
     <form className={style.form} >
         <div className={style.formgroup}>
         <label htmlFor="mito" className={style.formgrouplabel}>Mito</label>
+        <br />
         <input type="text" name="mito"
             className={style.formgroupinput}
             onChange={(e) => {
@@ -109,6 +112,8 @@ function IngresarMitos() {
         </div>
         <button className={style.button} onClick={HandleClick}>Enviar</button>
     </form>
+    </div>
+
   )
 }
 export default withAuth(IngresarMitos);

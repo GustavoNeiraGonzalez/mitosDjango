@@ -6,15 +6,18 @@ import swal from 'sweetalert2';
 
 
 export default function Header() {
+
   const token = localStorage.getItem('token');
   const tokenHeader = {headers:{ Authorization: token }};
   let loggedInUserId = null;
   let isTokenExpired = true;
 
+
   if (token) {
     const decodedToken = jwtDecode(token);
     loggedInUserId = decodedToken.user_id;
     isTokenExpired = decodedToken.exp * 1000 < Date.now();
+
   }
 
 
@@ -28,6 +31,8 @@ export default function Header() {
       showConfirmButton: false,
       timer: 1500
     })
+    loggedInUserId = null;
+    isTokenExpired = true;
   }
   
   return (
@@ -35,7 +40,6 @@ export default function Header() {
       <Link to='/' className={style.navbarlink}>Home</Link>
       <Link to='/Login' className={style.navbarlink}>Inicio sesion</Link>
       <Link to='/IngresarMitos' className={style.navbarlink}>Ingresar mitos</Link>
-      <Link to='/prueba' className={style.navbarlink}>Prueba</Link>
       {loggedInUserId && !isTokenExpired && (
 
       <button className={style.button} onClick={handleLogout}>Cerrar sesión</button>
